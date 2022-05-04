@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CP_Messenger.Common.Model
+{
+    public class Message
+    {
+        public int Id { get; set; }
+        public User Sender { get; set; }
+        public MessageType Type { get; set; }
+        public string Value { get; set; }
+        [NotMapped]
+        public System.Drawing.Image ValueToImage { get {
+
+                using (var ms = new MemoryStream(Convert.FromBase64String(Value)))
+                {
+                    return System.Drawing.Image.FromStream(ms);
+                }
+
+            } }
+        public Chat Chat { get; set; }
+    }
+}
