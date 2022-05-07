@@ -15,14 +15,7 @@ namespace CP_Messenger.Common.Model
         public MessageType Type { get; set; }
         public string Value { get; set; }
         [NotMapped]
-        public System.Drawing.Image ValueToImage { get {
-
-                using (var ms = new MemoryStream(Convert.FromBase64String(Value)))
-                {
-                    return System.Drawing.Image.FromStream(ms);
-                }
-
-            } }
+        public byte[] ValueToByte { get => Convert.FromBase64String(Value); }
         public Chat Chat { get; set; }
     }
 }

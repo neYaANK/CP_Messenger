@@ -9,23 +9,23 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <DataTemplate x:Key="TextTemplate">
-            <Grid>
+            <Grid Margin="2" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="40"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="\Resources\Images\no_picutre.png"/>
-                <TextBlock Grid.Column="1" Text="{Binding Path=Value}"></TextBlock>
+                <Image Grid.Column="0" Source="{Binding Path=Sender.ProfilePicture.Image}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Path=Value}" Margin="5 0 0 0" FontSize="16"></TextBlock>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ImageTemplate">
-            <Grid>
+            <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="40"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="\Resources\Images\no_picutre.png"/>
-                <Image Grid.Column="1" Source="\Resources\Images\no_picture.png"/>
+                <Image Grid.Column="0" Source="{Binding Path=Sender.ProfilePicture.Image}"/>
+                <Image Grid.Column="1" Margin="5" Source="{Binding Path=ValueToByte}" HorizontalAlignment="Left"  Stretch="Uniform" MaxHeight="160" MaxWidth="250" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="FileTemplate">
@@ -64,7 +64,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="\Resources\Images\no_image.png" Margin="5"></Image>
+                                <Image Grid.Column="0" Source="{Binding Path=Image}" Margin="1"></Image>
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
@@ -84,14 +84,25 @@
                     
                 </Grid>-->
             </Grid>
-            <Grid x:Name="Grid_Mainpart" Grid.Column="1">
+            <Grid x:Name="Grid_Mainpart" Grid.Column="1" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="13*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <ItemsControl Grid.Row="1" ItemTemplateSelector="{StaticResource MessageTemplateSelector}">
-                </ItemsControl>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Height="Auto">
+                    <ItemsControl x:Name="ItemsControl_Chat" ItemTemplateSelector="{StaticResource MessageTemplateSelector}"/>
+                </ScrollViewer>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="Button_Upload" Margin="3">Upload</Button>
+                    <TextBox Grid.Column="1" Margin="2" x:Name="TextBox_SendMessage"></TextBox>
+                    <Button Grid.Column="2" x:Name="Button_Send" Margin="3">Send</Button>
+                </Grid>
             </Grid>
 
         </Grid>

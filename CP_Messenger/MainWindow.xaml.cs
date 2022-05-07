@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
+using System.IO;
+using CP_Messenger.Common.Model;
+
 namespace CP_Messenger
 {
 
@@ -20,16 +23,16 @@ namespace CP_Messenger
     {
         private string _message = "";
 
-        public Chat(string name, string lastmessage, System.Drawing.Image image)
+        public Chat(string name, string lastmessage, byte[] image)
         {
             Name = name;
             LastMessage = lastmessage;
-            ProfilePicture = image;
+            Image = image;
         }
 
         public string Name { get; set; }
         public string LastMessage { get => _message.Substring(0, _message.Length<20?_message.Length:20); init { _message = value; } }
-        public System.Drawing.Image ProfilePicture { get; set; }
+        public byte[] Image { get; set; }
     }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -42,9 +45,38 @@ namespace CP_Messenger
             InitializeComponent();
             InitUserControls();
             SetActiveFrame(AppFrame.Home);
-            ListBox_Chats.Items.Add(new Chat("Artem", "Hello {username}!", System.Drawing.Image.FromFile(@"C:\Users\neYa\source\repos\CP_Messenger\CP_Messenger\Resources\Images\no_image.png")));
-            ListBox_Chats.Items.Add(new Chat("Max", "Hello {username}! How are you", System.Drawing.Image.FromFile(@"C:\Users\neYa\source\repos\CP_Messenger\CP_Messenger\Resources\Images\no_image.png")));
+            
+            
+            
+            //Delete after test
+            TestingInputFunc();
+            
         }
+
+        private void TestingInputFunc()
+        {
+            //ImageConverter conv = new ImageConverter();
+
+            ListBox_Chats.Items.Add(new Chat("Artem", "Hello {username}!", File.ReadAllBytes(@"C:\Users\neYa\source\repos\CP_Messenger\CP_Messenger\Resources\Images\no_image.png")));
+
+            ListBox_Chats.Items.Add(new Chat("Max", "Hello {username}! How are you", File.ReadAllBytes(@"C:\Users\neYa\Downloads\unknввфвфвфown.png")));
+
+
+            User user = new User() { ProfilePicture = new SmallImage() { Image = File.ReadAllBytes(@"C:\Users\neYa\Downloads\unknввфвфвфown.png") } };
+
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user , Value = "Hello", Type = MessageType.Text });
+
+            string chatImage =Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\neYa\Downloads\87248154.jpg"));
+
+
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+        }
+
         private void InitUserControls()
         {
             Login_Frame.SignIn += StartApplication;
