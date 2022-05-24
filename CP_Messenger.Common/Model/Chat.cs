@@ -11,5 +11,6 @@ namespace CP_Messenger.Common.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public SmallImage ChatImage { get; set; }
+        public List<Message> Messages { get; set; }
     }
 }

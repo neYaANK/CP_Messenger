@@ -64,17 +64,17 @@ namespace CP_Messenger
 
             User user = new User() { ProfilePicture = new SmallImage() { Image = File.ReadAllBytes(@"C:\Users\neYa\Downloads\unknввфвфвфown.png") } };
 
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user , Value = "Hello", Type = MessageType.Text });
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user , Value = "Hello", Type = MessageType.Text });
 
-            string chatImage =Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\neYa\Downloads\87248154.jpg"));
+            //string chatImage =Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\neYa\Downloads\87248154.jpg"));
 
 
+            ////ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
             //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = "Hello", Type = MessageType.Text });
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
-            ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
+            //ItemsControl_Chat.Items.Add(new Message() { Sender = user, Value = chatImage, Type = MessageType.Image });
         }
 
         private void InitUserControls()
@@ -121,6 +121,11 @@ namespace CP_Messenger
                 default:
                     break;
             }
+        }
+
+        private void ListBox_Chats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
